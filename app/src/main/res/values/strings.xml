@@ -6,4 +6,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_more_option_ip">Dirección IP</string>
+    <string name="fragment_more_option_port">Puerto</string>
+    <string name="connect">CONECTAR</string>
 </resources>
