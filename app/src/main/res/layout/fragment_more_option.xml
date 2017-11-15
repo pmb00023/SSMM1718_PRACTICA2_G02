@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/ip"
+            android:id="@+id/login_ip"
             android:layout_width="0dp"
             android:layout_height="39dp"
             android:layout_marginLeft="8dp"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_more_option_ip" />
 
         <EditText
-            android:id="@+id/port"
+            android:id="@+id/login_port"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -57,7 +57,7 @@
             android:inputType="number"
             app:layout_constraintLeft_toRightOf="@+id/fragmet_more_option_port"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ip" />
+            app:layout_constraintTop_toBottomOf="@+id/login_ip" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

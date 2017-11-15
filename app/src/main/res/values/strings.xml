@@ -9,4 +9,5 @@
     <string name="fragment_more_option_ip">Dirección IP</string>
     <string name="fragment_more_option_port">Puerto</string>
     <string name="connect">CONECTAR</string>
+    <string name="menu_settings">Opciones Avanzadas</string>
 </resources>

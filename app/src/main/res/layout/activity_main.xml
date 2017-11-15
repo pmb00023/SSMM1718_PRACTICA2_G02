@@ -7,7 +7,7 @@
     tools:context="es.ujaen.git.ssmm1718_practica2_g02.MainActivity">
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/LoginFragment"
         android:name="es.ujaen.git.ssmm1718_practica2_g02.LoginFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,6 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/connect"
+        android:onClick="connect"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
@@ -49,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment">
+        app:layout_constraintTop_toBottomOf="@+id/LoginFragment">
 
     </FrameLayout>
 

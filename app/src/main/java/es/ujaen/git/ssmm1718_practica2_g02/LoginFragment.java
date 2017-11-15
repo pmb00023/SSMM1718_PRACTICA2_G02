@@ -3,6 +3,7 @@ package es.ujaen.git.ssmm1718_practica2_g02;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -66,9 +67,9 @@ public class LoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
-    public class TareaAutentica extends AsyncTsk<ConnectionUserData,Void,String> {
+   // public class TareaAutentica extends AsyncTsk<ConnectionUserData,Void,String> {
 
-    }
+   // }
 
 
 }
