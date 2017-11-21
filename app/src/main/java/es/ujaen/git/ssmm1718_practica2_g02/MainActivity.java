@@ -2,6 +2,7 @@ package es.ujaen.git.ssmm1718_practica2_g02;
 
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,7 +28,16 @@ public class MainActivity extends AppCompatActivity implements MoreOptionFragmen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()){
+            case R.id.action_settings:
+                MoreOptionFragment mof = MoreOptionFragment.newInstance("","");
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+                mof.show(ft,"propiedades");
+                break;
+        }
+        return true;
     }
 
     public void onOption(){
