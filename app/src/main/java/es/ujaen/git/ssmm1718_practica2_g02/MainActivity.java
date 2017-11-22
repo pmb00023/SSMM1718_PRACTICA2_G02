@@ -20,16 +20,16 @@ public class MainActivity extends AppCompatActivity implements MoreOptionFragmen
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { //El que hace que se muestre el menu
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { //Menu de tres puntitos en la barra superior
         super.onOptionsItemSelected(item);
-        switch(item.getItemId()){
+        switch(item.getItemId()){ //Seleccion de opcion elegida
             case R.id.action_settings:
                 MoreOptionFragment mof = MoreOptionFragment.newInstance("","");
                 FragmentManager fm = getSupportFragmentManager();
@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity implements MoreOptionFragmen
         return true;
     }
 
-    public void onOption(){
-        MoreOptionFragment dFragment = new MoreOptionFragment();
-        dFragment.show(fragmentManager, "Dialog Fragment");
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {

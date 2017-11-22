@@ -10,6 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import javax.microedition.khronos.egl.EGLDisplay;
 
 
 /**
@@ -64,7 +68,18 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View fragment = inflater.inflate(R.layout.fragment_login, container, false);
+
+        Button connect = (Button) fragment.findViewById(R.id.connect_button);
+
+        final EditText user = (EditText) fragment.findViewById(R.id.login_user);
+        final EditText pass = (EditText) fragment.findViewById(R.id.login_password);
+
+
+
+
+
+        return fragment;
     }
 
    // public class TareaAutentica extends AsyncTsk<ConnectionUserData,Void,String> {
