@@ -6,11 +6,15 @@ package es.ujaen.git.ssmm1718_practica2_g02;
 
 public class ConnectionData extends UserData{
     protected String ip = "127.0.0.1";
-    protected short port = 6000;
+    protected int port = 6000;
 
     //CONSTRUCTOR
-    public ConnectionData(String user, String pass, String ip, short port) {
+    public ConnectionData(String user, String pass) {
         super(user, pass);
+    }
+
+    public ConnectionData(String user, String password, String ip, int port) {
+        super(user, password);
         this.ip = ip;
         this.port = port;
     }
@@ -20,7 +24,7 @@ public class ConnectionData extends UserData{
         return ip;
     }
 
-    public short getPort() {
+    public int getPort() {
         return port;
     }
 
@@ -29,7 +33,7 @@ public class ConnectionData extends UserData{
         this.ip = ip;
     }
 
-    public void setPort(short port) {
+    public void setPort(int port) {
         this.port = port;
     }
 }

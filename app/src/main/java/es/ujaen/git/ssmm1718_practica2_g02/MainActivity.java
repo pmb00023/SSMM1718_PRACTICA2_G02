@@ -11,7 +11,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements MoreOptionFragment.OnFragmentInteractionListener {
 
-    FragmentManager fragmentManager = getSupportFragmentManager();
+    public static final String PREFS_NAME = "connection_details";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

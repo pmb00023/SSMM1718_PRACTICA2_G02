@@ -1,6 +1,7 @@
 package es.ujaen.git.ssmm1718_practica2_g02;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -12,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import javax.microedition.khronos.egl.EGLDisplay;
+
+import static es.ujaen.git.ssmm1718_practica2_g02.MainActivity.PREFS_NAME;
 
 
 /**
@@ -75,7 +79,23 @@ public class LoginFragment extends Fragment {
         final EditText user = (EditText) fragment.findViewById(R.id.login_user);
         final EditText pass = (EditText) fragment.findViewById(R.id.login_password);
 
+        connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s_user = user.getText().toString();
+                String s_pass = pass.getText().toString();
 
+                SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
+                String ip = settings.getString("ip", "127.0.0.1");
+                int port = settings.getInt("port", 6000);
+
+
+                ConnectionData data = new ConnectionData(s_user, s_pass, ip, port);
+                Toast.makeText(getContext(),"Hola "+data.getUser()+" "+data.getPassword()+" "+data.getIp()+":"+data.getPort(),Toast.LENGTH_LONG).show(); //Muestra una notificacion en la parte baja de la pantalla
+                TareaAutentica autenticacion = new TareaAutentica();
+                autenticacion.execute(data);
+            }
+        });
 
 
 

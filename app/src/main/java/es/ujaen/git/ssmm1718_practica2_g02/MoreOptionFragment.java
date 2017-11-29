@@ -1,6 +1,7 @@
 package es.ujaen.git.ssmm1718_practica2_g02;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -8,6 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import static es.ujaen.git.ssmm1718_practica2_g02.MainActivity.PREFS_NAME;
 
 
 /**
@@ -56,7 +62,41 @@ public class MoreOptionFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more_option, container, false);
+        View fragmentmoreoption = inflater.inflate(R.layout.fragment_more_option, container, false);
+
+        Button ok = (Button) fragmentmoreoption.findViewById(R.id.ok_button_fragment_moreoption);
+
+        final EditText ip = (EditText) fragmentmoreoption.findViewById(R.id.login_ip);
+        final EditText port = (EditText) fragmentmoreoption.findViewById(R.id.login_port);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences ip_port = getActivity().getSharedPreferences(PREFS_NAME, 0); //Se crea el recurso que accede a las Preferencias Compartidas
+                SharedPreferences.Editor editor = ip_port.edit(); //Se crea el editor de las Preferencias compartidas
+
+                String s_ip = ip.getText().toString(); //Extraemos la direccion IP del campo de texto
+                String s_port = port.getText().toString(); //Extraemos el puerto del campo de texto
+
+                short port = 6000;
+
+                try{ //Para asegurarnos de que no se pongan letras y de error
+                    port = Short.parseShort(s_port);
+                }catch (java.lang.NumberFormatException ex){
+                    port=6000;
+                }
+
+                if (s_ip.equals("")==true){ //Comprobamos si se deja el campo en blanco para poner el ajuste por defecto
+                    s_ip = "127.0.0.1"; //Dirección IP por defecto
+                }
+                editor.putString("ip",s_ip);
+                editor.putInt("port",port);
+                editor.commit();
+                Toast.makeText(getContext(),"Se han guardado los ajustes correctamente",Toast.LENGTH_LONG).show(); //Muestra una notificacion en la parte baja de la pantalla
+                dismiss();
+            }
+        });
+        return fragmentmoreoption;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
