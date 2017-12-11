@@ -10,4 +10,5 @@
     <string name="fragment_more_option_port">Puerto</string>
     <string name="connect">CONECTAR</string>
     <string name="menu_settings">Opciones Avanzadas</string>
+    <string name="title_activity_service">ServiceActivity</string>
 </resources>

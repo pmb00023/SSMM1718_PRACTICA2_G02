@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
                 String s_pass = pass.getText().toString();
 
                 SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
-                String ip = settings.getString("ip", "127.0.0.1");
+                String ip = settings.getString("ip", "www4.ujaen.es");
                 int port = settings.getInt("port", 6000);
 
 

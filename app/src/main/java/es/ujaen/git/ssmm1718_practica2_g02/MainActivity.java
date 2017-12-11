@@ -1,5 +1,6 @@
 package es.ujaen.git.ssmm1718_practica2_g02;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -45,4 +46,7 @@ public class MainActivity extends AppCompatActivity implements MoreOptionFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
 }

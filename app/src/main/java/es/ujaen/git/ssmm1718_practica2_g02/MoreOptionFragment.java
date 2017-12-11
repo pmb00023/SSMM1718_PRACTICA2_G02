@@ -83,11 +83,11 @@ public class MoreOptionFragment extends DialogFragment {
                 try{ //Para asegurarnos de que no se pongan letras y de error
                     port = Short.parseShort(s_port);
                 }catch (java.lang.NumberFormatException ex){
-                    port=6000;
+                    port=80;
                 }
 
                 if (s_ip.equals("")==true){ //Comprobamos si se deja el campo en blanco para poner el ajuste por defecto
-                    s_ip = "127.0.0.1"; //Dirección IP por defecto
+                    s_ip = "www4.ujaen.es"; //Dirección IP por defecto
                 }
                 editor.putString("ip",s_ip);
                 editor.putInt("port",port);
