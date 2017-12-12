@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment {
 
                 ConnectionData data = new ConnectionData(s_user, s_pass, ip, port);
                 Toast.makeText(getContext(),"Hola "+data.getUser()+" "+data.getPassword()+" "+data.getIp()+":"+data.getPort(),Toast.LENGTH_LONG).show(); //Muestra una notificacion en la parte baja de la pantalla
-                TareaAutentica autenticacion = new TareaAutentica();
+                TareaAutentica autenticacion = new TareaAutentica(getActivity());
                 autenticacion.execute(data);
             }
         });

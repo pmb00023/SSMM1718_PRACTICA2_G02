@@ -1,5 +1,6 @@
 package es.ujaen.git.ssmm1718_practica2_g02;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -101,6 +102,7 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
 
         if(respuesta.compareToIgnoreCase("OK")==0){
             Intent service = new Intent(mContext, ServiceActivity.class);
+            mContext.startActivity(service);
             
 
 
