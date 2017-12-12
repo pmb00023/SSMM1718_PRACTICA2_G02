@@ -22,7 +22,12 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
 
     private ConnectionData data;
     Boolean error = false;
+    private Context mContext=null;
 
+    public TareaAutentica(Context context){
+        mContext=context;
+    }
+    
     public String doInBackground(ConnectionData... param) { //Los tres puntos es de java y significa que param puede ser un array
         if (param != null) {
             if (param.length >= 1) {
@@ -95,7 +100,8 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
     public void onPostExecute(String respuesta){
 
         if(respuesta.compareToIgnoreCase("OK")==0){
-            Intent service = new Intent(MainActivity.getApplicationContext(), ServiceActivity.class);
+            Intent service = new Intent(mContext, ServiceActivity.class);
+            
 
 
 
