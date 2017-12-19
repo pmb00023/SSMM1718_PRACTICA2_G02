@@ -27,14 +27,16 @@ public class CheckSesion{
 
         //Voy a sacar la fecha y hora de las preferencias compartidas
         SharedPreferences sesion_settings = mContext.getSharedPreferences(PREFS_SESION, 0);
-        String expires = sesion_settings.getString("expires", "0000-00-00-00-00-00 ");
+        String expires = sesion_settings.getString("expires", "");
 
         //Transformo el string en fecha
-        sesion = dateFormat.parse(expires, new ParsePosition(0));
+        if(expires!="") {
+            sesion = dateFormat.parse(expires, new ParsePosition(0));
 
-        //Comparo si es anterior la fecha actual que la de expiración
-        if (actual.before(sesion)){
-            return true;
+            //Comparo si es anterior la fecha actual que la de expiración
+            if (actual.before(sesion)) {
+                return true;
+            }
         }
         return false;
     }

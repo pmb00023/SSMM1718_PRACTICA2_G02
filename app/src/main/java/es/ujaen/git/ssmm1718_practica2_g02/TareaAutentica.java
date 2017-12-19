@@ -23,7 +23,7 @@ import java.net.UnknownHostException;
 public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
 
     private ConnectionData data;
-    Boolean error = false;
+    Boolean error = true;
     private Context mContext=null;
     public static final String PREFS_SESION = "sesion_details";
     String SesionIDend = "";
@@ -69,7 +69,7 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
                     output.flush();
 
                     //Recibo respuesta del servidor
-                    while ((ans=input.readLine()) != null)
+                    while ((ans=input.readLine()) != null && !isCancelled())
                     //Comprobamos si hemos recibido algo
                     if (ans != null) {
                         Log.d("Respuesta del servidor", ans);
@@ -84,14 +84,14 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
                                     Log.d("SesionID=", SesionIDend);
                                     expiresEnd = expires[1];
                                     Log.d("Expiracion=", expiresEnd);
+                                    error=false;
                                 }
                             }
                         }
-                    } else {
-                        error = true;
                     }
 
 
+                    //TODO: cerrar streams
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

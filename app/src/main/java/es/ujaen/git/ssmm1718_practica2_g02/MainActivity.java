@@ -14,6 +14,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements MoreOptionFragment.OnFragmentInteractionListener {
 
     public static final String PREFS_NAME = "connection_details";
+    private  TareaAutentica tarea=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,19 @@ public class MainActivity extends AppCompatActivity implements MoreOptionFragmen
         CheckSesion sesion = new CheckSesion(this);
         Boolean sesionActiva = sesion.ComprobarSesion();
         if (sesionActiva){
-            Intent service = new Intent(this, ServiceActivity.class);
-            this.startActivity(service);
+           tarea = new TareaAutentica(this);
+            //TODO: leer de preferencias compartidas los datos de usuario
+            //TODO: meterlo en la calse ConnectionData
+            //TODO: Arrancar la tarea
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(tarea!=null){
+            tarea.cancel(false);
+        }
+
+    }
 }
