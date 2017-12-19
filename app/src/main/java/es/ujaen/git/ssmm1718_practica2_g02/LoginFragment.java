@@ -1,13 +1,9 @@
 package es.ujaen.git.ssmm1718_practica2_g02;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +75,7 @@ public class LoginFragment extends Fragment {
         final EditText user = (EditText) fragment.findViewById(R.id.login_user);
         final EditText pass = (EditText) fragment.findViewById(R.id.login_password);
 
+
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +88,6 @@ public class LoginFragment extends Fragment {
 
 
                 ConnectionData data = new ConnectionData(s_user, s_pass, ip, port);
-                Toast.makeText(getContext(),"Hola "+data.getUser()+" "+data.getPassword()+" "+data.getIp()+":"+data.getPort(),Toast.LENGTH_LONG).show(); //Muestra una notificacion en la parte baja de la pantalla
                 TareaAutentica autenticacion = new TareaAutentica(getActivity());
                 autenticacion.execute(data);
             }
@@ -101,6 +97,8 @@ public class LoginFragment extends Fragment {
 
         return fragment;
     }
+
+
 
    // public class TareaAutentica extends AsyncTsk<ConnectionUserData,Void,String> {
 

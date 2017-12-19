@@ -2,8 +2,11 @@ package es.ujaen.git.ssmm1718_practica2_g02;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -12,8 +15,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import static android.app.PendingIntent.getActivity;
-import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by juandy on 29/11/17.
@@ -24,6 +25,10 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
     private ConnectionData data;
     Boolean error = false;
     private Context mContext=null;
+    public static final String PREFS_SESION = "sesion_details";
+    String SesionIDend = "";
+    String expiresEnd = "";
+
 
     public TareaAutentica(Context context){
         mContext=context;
@@ -56,13 +61,15 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
                     //Recibo la respuesta del servidor
                     //ans=input.readLine();
                     //Escribo el mensaje que voy a enviar
+                    //Mensaje que hay que enviar GET /~jccuevas/ssmm/autentica.php?user=user&pass=12345\r\n\r\nHTTP/1.1\r\n
+
                     String sec = "GET /~jccuevas/ssmm/autentica.php?user=" + user + "&pass=" + pass + "\r\n\r\nHTTP/1.1\r\n";
                     output.write(sec.getBytes());
                     //Limpio la salida
                     output.flush();
 
                     //Recibo respuesta del servidor
-                    ans = input.readLine();
+                    while ((ans=input.readLine()) != null)
                     //Comprobamos si hemos recibido algo
                     if (ans != null) {
                         Log.d("Respuesta del servidor", ans);
@@ -73,9 +80,9 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
                                 String sesionID[] = params[0].split("=");
                                 String expires[] = params[1].split("=");
                                 if (sesionID != null && expires != null) {
-                                    String SesionIDend = sesionID[1];
+                                    SesionIDend = sesionID[1];
                                     Log.d("SesionID=", SesionIDend);
-                                    String expiresEnd = expires[1];
+                                    expiresEnd = expires[1];
                                     Log.d("Expiracion=", expiresEnd);
                                 }
                             }
@@ -95,6 +102,7 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
         if (error == true) {
             return "CANCEL";
         }else{
+            //Toast.makeText(mContext,"Hola "+data.getUser()+" "+data.getPassword()+" "+data.getIp()+":"+data.getPort(),Toast.LENGTH_LONG).show(); //Muestra una notificacion en la parte baja de la pantalla
             return "OK";
         }
     }
@@ -103,10 +111,12 @@ public class TareaAutentica extends AsyncTask<ConnectionData, Void, String> {
         if(respuesta.compareToIgnoreCase("OK")==0){
             Intent service = new Intent(mContext, ServiceActivity.class);
             mContext.startActivity(service);
-            
+            SharedPreferences sesion = mContext.getSharedPreferences(PREFS_SESION, 0);
+            SharedPreferences.Editor editor = sesion.edit();
 
-
-
+            editor.putString("expires", expiresEnd);
+            editor.putString("sesionID", SesionIDend);
+            editor.commit();
         }
     }
 }

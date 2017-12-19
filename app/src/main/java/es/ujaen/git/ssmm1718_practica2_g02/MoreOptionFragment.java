@@ -78,7 +78,7 @@ public class MoreOptionFragment extends DialogFragment {
                 String s_ip = ip.getText().toString(); //Extraemos la direccion IP del campo de texto
                 String s_port = port.getText().toString(); //Extraemos el puerto del campo de texto
 
-                short port = 6000;
+                short port = 80;
 
                 try{ //Para asegurarnos de que no se pongan letras y de error
                     port = Short.parseShort(s_port);
@@ -99,7 +99,6 @@ public class MoreOptionFragment extends DialogFragment {
         return fragmentmoreoption;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
